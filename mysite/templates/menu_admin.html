@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>trueYum</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link  href="{% static 'style.css' %}" rel="stylesheet" >
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rancho">
+</head>
+<body>
+    <header class="container blue">
+        <a style="text-decoration:none" href="/index"><p class="left xlarge"><b>trueYum</b></p></a>
+        <a style="text-decoration:none" href="/menu/admin"><p class="right xlarge"><b>Menu</b></i></a>
+    </header>
+    <h2 style="margin-left: 20px;margin-top: 50px;"><b>Menu Items</b></h2>
+    <div class="card round" style="margin-left:20px;margin-right:20px">
+        <table style="width:100%;margin-top: 80px;">
+            <thead class="blue">
+                <tr class="xlarge">
+                    <td style="width:18%"><b>Name</b></td>
+                    <td style="width:15%"><b>Price</b></td>
+                    <td style="width:12%"><b>Active</b></td>
+                    <td style="width:19%"><b>Date of launch</b></td>
+                    <td style="width:12%"><b>Category</b></td>
+                    <td style="width:12%"><b>Free Delivery</b></td>
+                    <td style="width:12%"><b>Action</b></td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in menu_items %}
+                <tr class="large">
+                    <td style="width:18%">{{ item.name }}</td>
+                    <td style="width:15%">Rs. {{ item.price }}</td>
+                    <td style="width:12%">{{ item.active|yesno:"Yes,No" }}</td>
+                    <td style="width:19%">{{ item.launch_date }}</td>
+                    <td style="width:12%">{{ item.category }}</td>
+                    <td style="width:12%">{{ item.free_delivery|yesno:"Yes,No" }}</td>
+                    <td style="width:12%"><a href="/menu/admin/edit/{{ item.id }}">Edit</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            
+           
+        </table>
+    </div>
+    <footer class="container grey" style="margin-top:189px;">
+        <h4>Copyright © 2022</h4>
+    </footer>
+</body>
+</html>

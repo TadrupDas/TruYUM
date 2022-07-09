@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>trueYum</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link  href="{% static 'style.css' %}" rel="stylesheet" >
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rancho">
+</head>
+<body id="#">
+    <header class="container blue">
+        <p class="left xlarge"><a style="text-decoration: none;" href="/index"><b>trueYum</b></a></p>
+        <a style="text-decoration:none" href="/customer/menu"><p class="right xlarge"><b>Menu</b></i></a>
+        <a style="text-decoration:none" href="/customer/cart"><i class="margin-left xlarge" style="font-style: normal"><b>Cart</b></i></a>
+    </header>
+    <h2 style="margin-left: 20px;margin-top: 50px;"><b>Cart</b></h2>
+    <div class="card round" style="margin-left:20px;margin-right:20px">
+        {% if carts %}
+        <table style="width:100%;margin-top: 80px;">
+            <thead class="blue">
+                <tr class="xlarge">
+                    <td style="width:18%"><b>Name</b></td>
+                    <td style="width:12%"><b>Price</b></td>
+                    <td style="width:15%"><b>Category</b></td>
+                    <td style="width:15%"><b>Free Delivery</b></td>
+                    <td style="width:15%"><b>Action</b></td>
+                
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in carts %}
+                <tr class="large">
+                    <td style="width:18%">{{ item.name }}</td>
+                    <td style="width:12%">Rs {{ item.price }}</td>
+                    <td style="width:15%">{{ item.category_type }}</td>
+                    <td style="width:15%">{{ item.delivery_free|yesno:"Yes,No" }}</td>
+                    <td style="width:15%">
+                        <a href="/customer/cart/delete/{{ item.id }}"></i>Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            
+        </table>
+        {% else %}
+            <h4>No Items in Cart. Use "Add to Cart" option in <a href="/customer/menu">Menu Item List.</a></h4>
+        {% endif %}
+    </div>
+    <footer class="container grey" style="margin-top:285px;">
+        <h4>Copyright © 2022</h4>
+    </footer>
+</body>
+</html>

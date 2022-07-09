@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>trueYum</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link  href="{% static 'style.css' %}" rel="stylesheet" >
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rancho">
+</head>
+<body id="#">
+    <header class="container blue">
+        <p class="left xlarge"><b>trueYum</b></p>
+        <a style="text-decoration:none" href="/menu/admin"><p class="right xlarge"><b>Menu</b></i></a>
+    </header>
+    <h2 style="margin-left: 20px;margin-top: 50px;"><b>Edit Menu Items</b></h2>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="card round" style="margin-left:20px;margin-right:20px;margin-top: 30px;">
+            <div class="row">
+                <div class="col-40">
+                    <h5><label class="margin-left-48"><b>Name:</b></label></h5>
+                </div>
+                <div class="col-60">
+                    <input class="margin-left-48" name="name" placeholder="Name.." type="text"  value="{{ menu_item.name }}">
+                </div>
+            </div>
+            <div class="row">
+                    <h5><label class="margin-left-48"><b>Price(Rs.)</b></label></h5>
+                    <input class="margin-left-48" name="price" placeholder="Price.." type="number" value="{{ menu_item.price }}">
+                    <div class="margin-top-20">
+                        <label class="margin-left-48 large" style="font-size: 17px;"><b>Active</b></label>
+                        <label style="margin-left: 265px;font-size: 17px;"><b>Date Of Launch</b></label><br>
+                        <input class="margin-left-48" type="checkbox" id="yes" name="active" {% if menu_item.active %} checked="checked" {% endif %} value="Yes">
+                        <label for="yes">Is Active</label>
+                        <input style="margin-left: 250px;" classname="Date" placeholder="Date" type="date" type="date" name="launch_date" placeholder="YYYY-MM-DD" required pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"  value="{{ menu_item.launch_date }}">
+                    </div>
+                    <h5><label class="margin-left-48"><b>Category</b></label></h5>
+                    <select class="margin-left-48"  name="category" id="category">
+                        <option {% if menu_item.category == 'Starter' %} selected="selected"{% endif %} value="Starters">Starters</option>
+                        <option {% if menu_item.category == 'Main Course' %} selected="selected"{% endif %} value="Main Course">Main Course</option>
+                        <option {% if menu_item.category == 'Dessert' %} selected="selected"{% endif %} value="Dessert">Dessert</option>
+                        <option {% if menu_item.category == 'Beverages' %} selected="selected"{% endif %} value="Beverages">Beverages</option>
+                    </select>
+                    <h5><label class="margin-left-48"><b>Free Delivery</b></label></h5>
+                    <input class="margin-left-48" type="checkbox" id="free_delivery" name="free_delivery"  {% if menu_item.free_delivery %} checked="checked" {% endif %}  value="Yes">
+                    <button class="right blue round large margin-right-55 margin-top margin-bottom-16" type="submit">Save</button>
+            </div>
+        </div>
+    </form>
+    <footer class="container grey" style="margin-top: 50px;">
+        <h4>Copyright © 2022</h4>
+    </footer>
+</body>
+</html>

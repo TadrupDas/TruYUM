@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>trueYum</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link  href="{% static 'style.css' %}" rel="stylesheet" >
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rancho">
+</head>
+<body>
+    <header class="container blue">
+        <p class="left xlarge"><b>trueYum</b></p>
+        <a style="text-decoration:none" href="/menu/admin"><p class="right xlarge"><b>Admin</b></i></a>
+        <a style="text-decoration:none" href="/customer/menu"><i class="margin-left xlarge" style="font-style: normal"><b>Customer</b></i></a>
+    </header>
+	<h1 class="xxxlarge" style="font-weight: bolder;margin-top:50px;">Welcome to trueYum.com!</h1>
+    <h2 class="xlarge" style="color: #075294;text-align:center;margin-top:20px;"><b>Your favourite site to order food</b></h2><br>
+    <div class="center">
+        <a href="/menu/admin" style="text-decoration:none;"><h2 class="tag round blue flex-container" style="margin-top: 70px;width:280px">Admin</h2></a><br>
+        <a href="/customer/menu" style="text-decoration:none; color: aliceblue;"><h2 class="tag round blue flex-container" style="margin-top:30px;width:280px">Customer</h2></a>
+    </div>
+
+</body>
