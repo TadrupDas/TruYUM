@@ -15,33 +15,36 @@
         <a style="text-decoration:none" href="/signup"><i class="margin-left xlarge" style="font-style: normal"><b>Register</b></i></a>
     </header>
     <h2 style="margin-left:80px;margin-top: 50px;"><b>Create Account In truYum.com</b></h2>
-    <div class="padding-24 card round" style="margin-left: 80px;width: 50%;">
-        <div class="margin-top-20 margin-left container">
-            <label class="large">Username</label><br>
-            <input type="text" name="username" style="width:80%" placeholder="Enter your username" />
+    <form method="POST" action="">
+        {% csrf_token %}
+        <div class="padding-24 card round" style="margin-left: 80px;width: 50%;">
+            <div class="margin-top-20 margin-left container">
+                <label class="large">Username</label><br>
+                <input type="text" name="username" style="width:80%" placeholder="Enter your username" />
+            </div>
+            <div class="margin-left margin-top container">
+                <label class="margin-top-20 large">Email Id</label><br>
+                <input type="email" name="email" style="width: 80%;" placeholder="Enter your MailId" />
+            </div>
+            <div class="margin-left margin-top container">
+                <label class="margin-top-20 large">Password</label><br>
+                <input type="password" name="password" style="width: 80%;" placeholder="Enter your password" />
+            </div>
+            <div class="margin-left margin-top container">
+                <label class="margin-top-20 large">Confirm your Password</label><br>
+                <input type="password" name="confirmpassword" style="width: 80%;" placeholder="Confirm password" />
+            </div>
+            <div class="padding-24 margin-left margin-top-20 container large">
+                <button type="submit" style="border-radius:4px; width:80%;background-color: #075294;color: aliceblue;">Create</button>
+            </div>
+            <br>
+            {% for message in messages %}
+                <span class="error">
+                    {{ message }}
+                </span>
+            {% endfor %}
         </div>
-        <div class="margin-left margin-top container">
-            <label class="margin-top-20 large">Email Id</label><br>
-            <input type="email" name="email" style="width: 80%;" placeholder="Enter your MailId" />
-        </div>
-        <div class="margin-left margin-top container">
-            <label class="margin-top-20 large">Password</label><br>
-            <input type="password" name="password" style="width: 80%;" placeholder="Enter your password" />
-        </div>
-        <div class="margin-left margin-top container">
-            <label class="margin-top-20 large">Confirm your Password</label><br>
-            <input type="password" name="confirmpassword" style="width: 80%;" placeholder="Confirm password" />
-        </div>
-        <div class="padding-24 margin-left margin-top-20 container large">
-            <button type="submit" style="border-radius:4px; width:80%;background-color: #075294;color: aliceblue;">Create</button>
-        </div>
-        <br>
-        {% for message in messages %}
-            <span class="error">
-                {{ message }}
-            </span>
-        {% endfor %}
-    </div>
+    </form>
     <footer class="container grey" style="margin-top:50px;">
         <h4>Copyright © 2022</h4>
     </footer>
