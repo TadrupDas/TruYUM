@@ -9,7 +9,6 @@ urlpatterns = [
     path('signup',views.signup),
     path('menu/admin/edit/status',views.menu_item_status, name='item-status'),
     path('logout',views.logout, name="logout"),
-
     path('customer/menu',views.menu_customer,name='customer-menu'),
     path('customer/cart',views.cart_list_customer),
     path('customer/cart/delete/<int:id>',views.delete_cart_item, name="customer-cart-delete"),

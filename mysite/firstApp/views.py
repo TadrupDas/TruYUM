@@ -68,46 +68,6 @@ def Edit_menu(request,id):
 def menu_item_status (request):
     return render(request,"edit_menu_admin_status.html")
 
-
-def signup (request):
-    #
-    if(request.method == "POST"):
-        username = request.POST.get('username')
-        email = request.POST.get('email')
-        password = request.POST.get('password')
-        confirmpassword = request.POST.get('confirmpassword')
-        if(password == confirmpassword):
-            if(User.objects.filter(email=email).exists()):
-                messages.info(request,'This email is already taken, try new !')
-                return redirect('/signup')            
-            elif(User.objects.filter(username=username).exists()):
-                messages.info(request,'This username is already taken, try new !')
-                return redirect('/signup')
-            else:
-                user = User.objects.create_user(username=username,email=email,password=password)
-                user.save()
-        else:
-            messages.info(request,'Password and confirm password does not match !')
-            return redirect('/signup')
-        
-    
-    return render(request,'signup.html')
-
-def signin (request):
-    if(request.method == "POST"):
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        user = auth.authenticate(username=username,password=password)
-        if user is not None:
-            auth.login(request,user)
-            return redirect('/customer/menu')
-        else:
-            messages.info(request,'Invalid username or password !')
-            return redirect('/signin')
-        
-    return render(request,'signin.html')
-
-@login_required(login_url='signin')
 def logout (request):
     auth.logout(request)
     return redirect('/signin')
